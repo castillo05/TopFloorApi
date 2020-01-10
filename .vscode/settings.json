@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "connectionTimeout": 12000,
+            "database": "sql10318391",
+            "dialect": "MySQL",
+            "name": "sql10.freesqldatabase.com",
+            "password": "swlNQKIwFm",
+            "port": 3306,
+            "server": "sql10.freesqldatabase.com",
+            "username": "sql10318391"
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "topfloorapi",
+  "version": "1.0.0",
+  "description": "Sistema de registro e inicio de sesion.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/babel src --watch --out-dir dist",
+    "start": "nodemon dist/index.js",
+    "watch": "babel-watch dist"
+  },
+  "author": "Jorge Castillo Moreno",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "bcrypt": "^3.0.7",
+    "core-js": "^3.6.2",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.8.6",
+    "mysql2": "^2.1.0",
+    "nodemailer": "^6.4.2",
+    "sequelize": "^5.21.3",
+    "tedious": "^6.6.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^2.0.2",
+    "sequelize-cli": "^5.5.1"
+  }
+}
