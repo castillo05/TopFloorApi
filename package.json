@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/babel src --watch --out-dir dist",
-    "start": "nodemon dist/index.js",
-    "watch": "babel-watch dist"
+    "start": "node dist/index.js"
   },
   "author": "Jorge Castillo Moreno",
   "license": "ISC",
@@ -20,7 +18,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.8.6",
     "mysql2": "^2.1.0",
-    "nodemailer": "^6.4.2",
+    "nodemailer": "^4.7.0",
     "path": "^0.12.7",
     "sequelize": "^5.21.3",
     "tedious": "^6.6.5"
