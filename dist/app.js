@@ -7,6 +7,8 @@ exports.app = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
+var _path = _interopRequireDefault(require("path"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const app = (0, _express.default)();
@@ -24,15 +26,15 @@ app.use((req, res, next) => {
   next();
 }); //Cargamos una ruta estatica que es la carpeta client
 
-app.use('/', _express.default.static('client', {
+app.use('/', _express.default.static('dist/client', {
   redirect: false
 }));
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.status(200).send({
     message: 'Bienvenido a Top Floor Marketing'
   });
 });
 app.use(require('./routes/index'));
 app.get('*', function (req, res, next) {
-  res.sendFile(path.resolve('client/index.html'));
+  res.sendFile(_path.default.resolve('dist/client/index.html'));
 });

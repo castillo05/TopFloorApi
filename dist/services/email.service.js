@@ -12,7 +12,7 @@ function email(receptor, nombre_rec, user) {
       service: 'Gmail',
       auth: {
         user: 'jcdevelopernicaragua@gmail.com',
-        pass: 'Andrey18.'
+        pass: ''
       }
     });
 

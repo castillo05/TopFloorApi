@@ -9,7 +9,7 @@ function email(receptor,nombre_rec,user) {
                 auth:{
                     
                     user:'jcdevelopernicaragua@gmail.com',
-                    pass:'Andrey18.'
+                    pass:''
                 }
 
             });

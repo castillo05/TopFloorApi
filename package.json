@@ -21,6 +21,7 @@
     "mongoose": "^5.8.6",
     "mysql2": "^2.1.0",
     "nodemailer": "^6.4.2",
+    "path": "^0.12.7",
     "sequelize": "^5.21.3",
     "tedious": "^6.6.5"
   },

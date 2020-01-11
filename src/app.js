@@ -2,6 +2,8 @@
 
 import express from 'express';
 
+import path from 'path';
+
 export const app = express();
 
 app.use(express.urlencoded({extended:true}));
@@ -17,16 +19,16 @@ app.use((req,res,next)=>{
 });
 
 //Cargamos una ruta estatica que es la carpeta client
-app.use('/',express.static('client',{redirect:false}));
+app.use('/',express.static('dist/client',{redirect:false}));
 
-app.get('/',(req,res)=>{
+app.get('/api',(req,res)=>{
     res.status(200).send({message:'Bienvenido a Top Floor Marketing'});
 });
 
 app.use(require('./routes/index'));
 
 app.get('*',function (req,res,next) {
-	res.sendFile(path.resolve('client/index.html'));
+	res.sendFile(path.resolve('dist/client/index.html'));
 	
 });
 
