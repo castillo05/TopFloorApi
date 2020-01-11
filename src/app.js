@@ -16,10 +16,17 @@ app.use((req,res,next)=>{
 	next();
 });
 
+//Cargamos una ruta estatica que es la carpeta client
+app.use('/',express.static('client',{redirect:false}));
+
 app.get('/',(req,res)=>{
     res.status(200).send({message:'Bienvenido a Top Floor Marketing'});
 });
 
 app.use(require('./routes/index'));
 
+app.get('*',function (req,res,next) {
+	res.sendFile(path.resolve('client/index.html'));
+	
+});
 
