@@ -1,12 +1,15 @@
 import mongoose from 'mongoose';
 import db from './models';
 import {app} from './app';
+require('dotenv').config();
+
+var port = process.env.PORT; 
 
 mongoose.connect('mongodb://topfloor:topfloor05@ds261648.mlab.com:61648/topfloordb',{useNewUrlParser:true,useUnifiedTopology:true},(error, res)=>{
     if (error) return console.log(error);
 
-    app.listen(2000,()=>{
-        console.log('Servidor corriendo en el puerto '+2000);
+    app.listen(port,()=>{
+        console.log('Servidor corriendo en el puerto '+port);
     });
 });
 

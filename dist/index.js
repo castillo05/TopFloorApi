@@ -8,14 +8,18 @@ var _app = require("./app");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+require('dotenv').config();
+
+var port = process.env.PORT;
+
 _mongoose.default.connect('mongodb://topfloor:topfloor05@ds261648.mlab.com:61648/topfloordb', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, (error, res) => {
   if (error) return console.log(error);
 
-  _app.app.listen(2000, () => {
-    console.log('Servidor corriendo en el puerto ' + 2000);
+  _app.app.listen(port, () => {
+    console.log('Servidor corriendo en el puerto ' + port);
   });
 });
 
