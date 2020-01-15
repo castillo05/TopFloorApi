@@ -86,18 +86,20 @@ let singin = async (req, res)=>{
     
 }
 
-let getUser=(req, res)=>{
+let getUser= (req, res)=>{
     let id = req.params.id;
 
-    User.findById(id,(err,user)=>{
-        if(err) return console.log(err);
+    let searchUserOne = User.findById(id);
+    
+    searchUserOne.then((user)=>{
+        if(!user) return res.status(200).send({message:'Este usuario no existe'});
 
-        if(!user){
-            res.status(200).send({message:'Este usuario no existe'});
-        }else{
-            res.status(200).send({user:user});
-        }
+        res.status(200).send({user:user});
+    }).catch((error)=>{
+        console.log(error);
     });
+
+    
 }
 
 let updateUser=(req,res)=>{

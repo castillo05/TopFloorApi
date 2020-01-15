@@ -116,18 +116,17 @@ let singin = async (req, res) => {
 let getUser = (req, res) => {
   let id = req.params.id;
 
-  _User.default.findById(id, (err, user) => {
-    if (err) return console.log(err);
+  let searchUserOne = _User.default.findById(id);
 
-    if (!user) {
-      res.status(200).send({
-        message: 'Este usuario no existe'
-      });
-    } else {
-      res.status(200).send({
-        user: user
-      });
-    }
+  searchUserOne.then(user => {
+    if (!user) return res.status(200).send({
+      message: 'Este usuario no existe'
+    });
+    res.status(200).send({
+      user: user
+    });
+  }).catch(error => {
+    console.log(error);
   });
 };
 
