@@ -46,50 +46,43 @@ let singup = (req, res)=>{
     });
 }
 
-let singin = (req, res)=>{
+let singin = async (req, res)=>{
+    try {
+
     let email=req.body.email;
 
-    let searchUser = User.findOne({email:email.toLowerCase()});
+    let searchUser = await User.findOne({email:email.toLowerCase()});
 
-    let searchVerified= User.findOne({email:email.toLowerCase()});
+    console.log(searchUser);
+        
+    if(!searchUser){
+       res.status(500).send({message:'Estos datos no existen'});
+    }else if(!searchUser.verified) {
+        res.status(401).send({message:'Esta cuenta no esta verificada'});
+    }else{
+        if(!req.body.password) return res.status(200).send({message:'Introduzca la contraseña'});
 
-    searchVerified.exec((err,user)=>{
-        if(!user){
-            res.status(500).send({message:'Estos datos no existen'});
-        }else if(user.verified){
-                    searchUser.exec((err, user)=>{
-                if(err) return res.status(500).send({message:err});
+        bcrypt.compare(req.body.password, searchUser.password,(err, check)=>{
+            if(err){
+                console.log(err)
+            }else{
+                if(!check) return res.status(200).send({message:'Contraseña Incorrecta'});
 
-                if(!user){
-                    res.status(200).send({message:'Este correo electronico no esta registrado'});
+                let token = jsonwebtoken.sign({
+                    user:searchUser
+                },'Top-Floor-Secret',{expiresIn:60*60});
+                if(req.body.gethash){
+                    res.status(200).send({token:token});
                 }else{
-                    if(!req.body.password) return res.status(200).send({message:'Introduzca la contraseña'});
-                    
-                    bcrypt.compare(req.body.password,user.password,(err, check)=>{
-                        if(err){
-                            console.log(err)
-                        }else{
-                            if(!check) return res.status(200).send({message:'Contraseña Incorrecta'});
-
-                            let token = jsonwebtoken.sign({
-                                user:user
-                            },'Top-Floor-Secret',{expiresIn:60*60});
-                            if(req.body.gethash){
-                                res.status(200).send({token:token});
-                            }else{
-                                res.status(200).send({user:user});
-                            }
-                            
-                        } 
-                    });
-                    
+                    res.status(200).send({user:searchUser});
                 }
-            });
-        }else{
-            res.status(401).send({message:'Esta cuenta no esta verificada'});
-        }
-    });
-
+                
+            }
+        });
+    }
+    } catch (error) {
+         console.log(error);   
+    }
     
 }
 
