@@ -49,8 +49,10 @@ let getAgents = (req, res) => {
   });
 };
 
-let getInformationOfAgents = (req, res) => {
-  _Agent.default.find((err, agents) => {
+async function getInformationOfAgents(req, res) {
+  let query = _Agent.default.find();
+
+  await query.exec((err, agents) => {
     if (err) {
       res.status(500).send({
         message: err
@@ -61,7 +63,7 @@ let getInformationOfAgents = (req, res) => {
       });
     }
   });
-};
+}
 
 module.exports = {
   getAgents,

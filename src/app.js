@@ -4,7 +4,9 @@ import express from 'express';
 
 import path from 'path';
 
-export const app = express();
+const app = express();
+
+const server = require('http').createServer(app);
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
@@ -32,3 +34,6 @@ app.get('*',function (req,res,next) {
 	
 });
 
+module.exports={
+	app, server
+}

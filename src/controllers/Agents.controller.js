@@ -42,15 +42,18 @@ let getAgents=(req,res)=>{
     });
 }
 
-let getInformationOfAgents=(req, res)=>{
+async function getInformationOfAgents(req, res){
 
-    Agents.find((err, agents)=>{
+    let query = Agents.find();
+
+   await query.exec((err,agents)=>{
         if(err){
-            res.status(500).send({message:err});
+        res.status(500).send({message:err});
         }else{
             res.status(200).send({agents:agents});
         }
     });
+
 }
 
 

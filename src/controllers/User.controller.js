@@ -151,7 +151,7 @@ let updateUser=(req,res)=>{
           User.findByIdAndUpdate(id,{verified:1},(err,verified)=>{
             if(err) return res.status(500).send({message:err});
     
-            res.status(200).send({verified:'Tu cuenta ha sido activada con exito!'});
+            res.redirect('https://gentle-shelf-08563.herokuapp.com/login');
           });
 
 

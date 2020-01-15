@@ -10,17 +10,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 require('dotenv').config();
 
+const io = require('socket.io')(_app.server);
+
 var port = process.env.PORT;
+io.on('connection', socket => {
+  console.log('Conexion id: ' + socket.id);
+});
+
+_app.server.listen(port);
 
 _mongoose.default.connect('mongodb://topfloor:topfloor05@ds261648.mlab.com:61648/topfloordb', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, (error, res) => {
   if (error) return console.log(error);
-
-  _app.app.listen(port, () => {
-    console.log('Servidor corriendo en el puerto ' + port);
-  });
 });
 
 _models.default.sequelize.authenticate().then(() => {
